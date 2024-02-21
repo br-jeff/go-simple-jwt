@@ -1,8 +1,13 @@
 FROM golang:1.22.0-alpine3.19
-WORKDIR /app
+
+WORKDIR /usr/src/app
+
+COPY go.mod ./
+RUN go mod download && go mod verify
+
 COPY . .
-ENV CGO_ENABLED=0
-RUN go mod download
-RUN go build -o /godocker
+
+RUN go build -o /usr/local/bin/app
 EXPOSE 8080
-CMD [ “/godocker” ]
+
+CMD [ "app" ]
