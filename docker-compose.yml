@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  go-api:
+    build:
+      context: ./
+    ports:
+      - 8080:8080
+    environment:
+      URL: localhost
+      PORT: 8080
